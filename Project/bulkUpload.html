@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <header>
+        <!--<div class="logo-container">
+            <img src="LogoBlack.png" alt="Band Logo" class="logo">
+        </div>-->
+        <nav>
+            <ul>
+                <li><a href="index.html">Log Out</a></li>
+                <li><a href="productEdit.html">Product Edit</a></li>
+                <li><a href="bulkUpload.html">Bulk Upload</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Download Product Data</h2>
+            <p>Click the button below to download a copy of all your product data.</p>
+            <div class="button-container">
+                <a href="Example.txt" class="purchase-button" download>Download Product Data</a>
+            </div>
+        </section>
+        <section>
+            <h2>Upload Product Data</h2>
+            <p>Select a file to upload product data. Accepted formats: CSV, XML, Text, JSON.</p>
+            <form action="upload_product_data.php" method="post" enctype="multipart/form-data">
+                <input type="file" name="product_file" accept=".csv, .xml, .txt, .json" required>
+                <button type="submit" class="sign-in-button">Upload File</button>
+            </form>
+            <p>Example file format:</p>
+            <p><a href="Example.txt" target="_blank">Example.txt</a></p>
+        </section>
+
+    </main>
+    <footer>
+        <p>&copy; 2024 Thraggie. All rights reserved. This is a fictional band.</p>
+    </footer>
+</body>
+</html>

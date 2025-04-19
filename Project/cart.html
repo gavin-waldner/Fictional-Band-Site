@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Band Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="LogoBlack.png" alt="Band Logo" class="logo">
+        </div>
+        <div>
+            <!--<a href="#home">
+                <img src="LogoTrans.png" alt="Trans Logo" class="header-logo">
+            </a>-->
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Store</a></li>
+                <li><a href="navigation.html">Login</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <ol>
+            <li>
+                <figure>
+                    <a href="details01.html">
+                        <img src="AlbumArt1.png" alt="Album Art 1" class="album-art-cart">
+                    </a>
+                </figure>
+                <div class="cart-product-info">
+                    <h3>Thraggie</h3>
+                    <p><span class="price">$24.99</span></p>
+                    <div class="quantity-control">
+                        <input type="number" min="1" value="1" class="quantity-input" onchange="calculateTotalPrice(this)">
+                        <button class="confirm-quantity">Confirm</button>
+                    </div>
+                    <button class="remove-from-cart" onclick="removeFromCart(this)">Remove</button>
+                    <span class="total-price"><span>$</span>24.99</span>
+                </div>
+            </li>
+            <li>
+                <figure>
+                    <a href="details02.html">
+                        <img src="AlbumArt2.png" alt="Album Art 2" class="album-art-cart">
+                    </a>
+                </figure>
+                <div class="cart-product-info">
+                    <h3>A Mean's to the End</h3>
+                    <p><span class="price">$24.99</span></p>
+                    <div class="quantity-control">
+                        <input type="number" min="1" value="1" class="quantity-input" onchange="calculateTotalPrice(this)">
+                        <button class="confirm-quantity">Confirm</button>
+                    </div>
+                    <button class="remove-from-cart" onclick="removeFromCart(this)">Remove</button>
+                    <span class="total-price"><span>$</span>24.99</span>
+                </div>
+            </li>
+            <li>
+                <figure>
+                    <a href="details03.html">
+                        <img src="AlbumArt5.png" alt="Album Art 5" class="album-art-cart">
+                    </a>
+                </figure>
+                <div class="cart-product-info">
+                    <h3>Enchantment at Twilight's Edge</h3>
+                    <p><span class="price">$24.99</span></p>
+                    <div class="quantity-control">
+                        <input type="number" min="1" value="1" class="quantity-input" onchange="calculateTotalPrice(this)">
+                        <button class="confirm-quantity">Confirm</button>
+                    </div>
+                    <button class="remove-from-cart" onclick="removeFromCart(this)">Remove</button>
+                    <span class="total-price"><span>$</span>24.99</span>
+                </div>
+            </li>
+            <li>
+                <figure>
+                    <a href="details04.html">
+                        <img src="AlbumArt4.png" alt="Album Art 4" class="album-art-cart">
+                    </a>
+                </figure>
+                <div class="cart-product-info">
+                    <h3>The Digital Wasteland</h3>
+                    <p><span class="price">$19.99</span></p>
+                    <div class="quantity-control">
+                        <input type="number" min="1" value="1" class="quantity-input" onchange="calculateTotalPrice(this)">
+                        <button class="confirm-quantity">Confirm</button>
+                    </div>
+                    <button class="remove-from-cart" onclick="removeFromCart(this)">Remove</button>
+                    <span class="total-price"><span>$</span>19.99</span>
+                </div>
+            </li>
+        </ol>
+        <div id="total" style="color: white; text-align: right;">
+            Subtotal: <span id="subtotal">$0.00</span><br>
+            Tax (8.125%): <span id="tax">$0.00</span><br>
+            Shipping: <span id="shipping">$10.00</span><br>
+            Total Price: <span id="total-price">$0.00</span><br>
+            <button id="checkout-button" class="purchase-button" onclick="checkout()">Checkout</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Thraggie. All rights reserved. This is a fictional band.</p>
+    </footer>
+
+    <script>
+        // Define an array to store cart items
+        var cartItems = [];
+
+        function calculateTotalPrice(inputElement) {
+            // Get the parent element of the input
+            var productInfo = inputElement.closest('.cart-product-info');
+
+            // Get the price and quantity
+            var price = parseFloat(productInfo.querySelector('.price').textContent.replace('$', ''));
+            var quantity = parseInt(inputElement.value);
+
+            // Calculate total price
+            var totalPrice = price * quantity;
+
+            // Update the total price in the product info
+            productInfo.querySelector('.total-price').innerHTML = '<span>$</span>' + totalPrice.toFixed(2);
+
+            // Calculate subtotal
+            var subtotal = 0;
+            document.querySelectorAll('.cart-product-info').forEach(function (item) {
+                subtotal += parseFloat(item.querySelector('.total-price').textContent.replace('$', ''));
+            });
+
+            // Update the subtotal in the main total section
+            document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
+
+            // Calculate tax
+            var taxRate = 0.08125; // 8.125%
+            var tax = subtotal * taxRate;
+            document.getElementById('tax').textContent = '$' + tax.toFixed(2);
+
+            // Calculate total price including tax
+            var totalIncludingTax = subtotal + tax + 10;
+
+            // Update the total price including tax in the main total section
+            document.getElementById('total-price').textContent = '$' + totalIncludingTax.toFixed(2);
+        }
+
+
+        function checkout() {
+            // Perform checkout process here, e.g., redirect to checkout page
+            alert("Redirecting to payment page...");
+            // Replace the alert with actual checkout process
+        }
+
+        function removeFromCart(button) {
+            var listItem = button.parentNode.parentNode;
+            listItem.remove(); // Remove the parent li element
+
+            // Recalculate total price after removing the item
+            calculateTotalPrice(button); // Pass the button element to calculateTotalPrice()
+
+            // Disable checkout button if cart is empty
+            if (document.querySelectorAll('.cart-product-info').length === 0) {
+                document.getElementById('checkout-button').disabled = true;
+            }
+        }
+
+
+    </script>
+</body>
+</html>
